@@ -4,11 +4,11 @@ if(isset($_SESSION['level'])){
   if ($_SESSION['level'] !== '1') {
     // Redirect jika bukan level 1
     echo "<script>alert('Akses ditolak! Halaman ini hanya untuk level 1.');</script>";
-    echo "<script>window.location='".base_url('../../auth/login.php')."';</script>";
+    echo "<script>window.location='".base_url('../auth/login.php')."';</script>";
     exit;
 }
 }else{
-  echo "<script>window.location='".base_url('../../auth/login.php')."';</script>";
+  echo "<script>window.location='".base_url('../auth/login.php')."';</script>";
   
 }
 ?>

@@ -8,7 +8,7 @@ if(mysqli_connect_errno()){
 }
 
 function base_url($url = null){
-    $base_url = "http://localhost/Web-Rumah-Sakit-Anjai-WD03";
+    $base_url = "http://localhost/Web-Rumah-Sakit-Anjai-WD03/";
     if($url != null){
         return $base_url."/".$url;
     }
