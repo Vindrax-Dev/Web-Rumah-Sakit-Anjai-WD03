@@ -96,13 +96,13 @@ if(isset($_SESSION['level'])){
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="index.html">
+      <a class="nav-link" href="../DataDokter/index.php">
         <i class="mdi mdi-stethoscope menu-icon"></i>
         <span class="menu-title">Data Dokter</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="index.html">
+      <a class="nav-link" href="../DataPasien/index.php">
         <i class="mdi mdi-account-multiple menu-icon"></i>
         <span class="menu-title">Data Pasien</span>
       </a>
@@ -114,7 +114,7 @@ if(isset($_SESSION['level'])){
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="index.html">
+      <a class="nav-link" href="../DataObat/index.php">
         <i class="mdi mdi-pill menu-icon"></i>
         <span class="menu-title">Data Obat</span>
       </a>
@@ -222,8 +222,8 @@ if(isset($_SESSION['level'])){
               <div class="col-md-12 grid-margin">
                 <div class="row">
                   <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                    <h3 class="font-weight-bold">Data Obat </h3>
-                    <h6 class="font-weight-normal mb-0">Anda dapat mengelola obat <span class="text-primary">3 unread alerts!</span></h6>
+                    <h3 class="font-weight-bold">Data Dokter </h3>
+                    <h6 class="font-weight-normal mb-0">Anda dapat mengelola Dokter </h6>
                   </div>
                   <div class="col-12 col-xl-4">
                     <div class="justify-content-end d-flex">
@@ -246,32 +246,32 @@ if(isset($_SESSION['level'])){
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Striped Table</h4>
-                    <p class="card-description"> Add class <code>.table-striped</code>
-                    </p>
                     <div class="table-responsive">
                       <table class="table table-striped">
                         <thead>
                           <tr>
                           <th> No. </th>
-                            <th> Nama Obat </th>
-                            <th> Kemasan </th>
-                            <th> Harga </th>
+                            <th> Nama Dokter </th>
+                            <th> alamat </th>
+                            <th> No Hp </th>
+                            <th> Keterangan </th>
                           </tr>
                         </thead>
                         <tbody>
             <?php
-            // Query untuk mengambil data dari tabel obat
+            // Query untuk mengambil data dari tabel 
             $no=1;
-            $sql_obat = mysqli_query($con,"SELECT * FROM obat") or die(mysqli_error($con));
-            if (mysqli_num_rows($sql_obat) > 0) {
+            $sql_dokter = mysqli_query($con,"SELECT * FROM dokter") or die(mysqli_error($con));
+            if (mysqli_num_rows($sql_dokter) > 0) {
                 // Output data setiap baris
-                while ($data=mysqli_fetch_array($sql_obat)) {?>
+                while ($data=mysqli_fetch_array($sql_dokter)) {?>
                    <tr>
             <td><?php echo $no++; ?></td>
-            <td><?php echo htmlspecialchars($data['nama_obat']); ?></td>
-            <td><?php echo htmlspecialchars($data['kemasan']); ?></td>
-            <td><?php echo htmlspecialchars($data['harga']); ?></td>
+            <td><?php echo htmlspecialchars($data['nama']); ?></td>
+            <td><?php echo htmlspecialchars($data['alamat']); ?></td>
+            <td><?php echo htmlspecialchars($data['no_hp']); ?></td>
+            <td></td>
+            
             </tr>
                   <?php
                 }

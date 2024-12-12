@@ -96,25 +96,25 @@ if(isset($_SESSION['level'])){
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="index.html">
+      <a class="nav-link" href="../DataDokter/index.php">
         <i class="mdi mdi-stethoscope menu-icon"></i>
         <span class="menu-title">Data Dokter</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="index.html">
+      <a class="nav-link" href="../DataPasien/index.phpl">
         <i class="mdi mdi-account-multiple menu-icon"></i>
         <span class="menu-title">Data Pasien</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="index.html">
+      <a class="nav-link" href="../DataPoli/index.php">
         <i class="mdi mdi-hospital-building menu-icon"></i>
         <span class="menu-title">Data Poli</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="index.html">
+      <a class="nav-link" href="../DataObat/index.php">
         <i class="mdi mdi-pill menu-icon"></i>
         <span class="menu-title">Data Obat</span>
       </a>
@@ -254,24 +254,28 @@ if(isset($_SESSION['level'])){
                         <thead>
                           <tr>
                           <th> No. </th>
-                            <th> Nama Obat </th>
-                            <th> Kemasan </th>
-                            <th> Harga </th>
+                            <th> Nama </th>
+                            <th> Alamat </th>
+                            <th> No KTP </th>
+                            <th> No HP </th>
+                            <th> Ket </th>
                           </tr>
                         </thead>
                         <tbody>
             <?php
-            // Query untuk mengambil data dari tabel obat
+            // Query untuk mengambil data dari tabel pasien
             $no=1;
-            $sql_obat = mysqli_query($con,"SELECT * FROM obat") or die(mysqli_error($con));
-            if (mysqli_num_rows($sql_obat) > 0) {
+            $sql_pasien = mysqli_query($con,"SELECT * FROM pasien") or die(mysqli_error($con));
+            if (mysqli_num_rows($sql_pasien) > 0) {
                 // Output data setiap baris
-                while ($data=mysqli_fetch_array($sql_obat)) {?>
+                while ($data=mysqli_fetch_array($sql_pasien)) {?>
                    <tr>
             <td><?php echo $no++; ?></td>
-            <td><?php echo htmlspecialchars($data['nama_obat']); ?></td>
-            <td><?php echo htmlspecialchars($data['kemasan']); ?></td>
-            <td><?php echo htmlspecialchars($data['harga']); ?></td>
+            <td><?php echo htmlspecialchars($data['nama']); ?></td>
+            <td><?php echo htmlspecialchars($data['alamat']); ?></td>
+            <td><?php echo htmlspecialchars($data['no_ktp']); ?></td>
+            <td><?php echo htmlspecialchars($data['no_hp']); ?></td>
+            <td></td>
             </tr>
                   <?php
                 }
