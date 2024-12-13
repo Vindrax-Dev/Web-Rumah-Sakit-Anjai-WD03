@@ -4,11 +4,11 @@ if(isset($_SESSION['level'])){
   if ($_SESSION['level'] !== '1') {
     // Redirect jika bukan level 1
     echo "<script>alert('Akses ditolak! Halaman ini hanya untuk level 1.');</script>";
-    echo "<script>window.location='".base_url('../../auth/login.php')."';</script>";
+    echo "<script>window.location='".base_url('../../../auth/login.php')."';</script>";
     exit;
 }
 }else{
-  echo "<script>window.location='".base_url('../../auth/login.php')."';</script>";
+  echo "<script>window.location='".base_url('../../../auth/login.php')."';</script>";
   
 }
 ?>
@@ -114,7 +114,7 @@ if(isset($_SESSION['level'])){
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="../admin/DataObat/index.php">
+      <a class="nav-link" href="../../admin/DataObat/index.php">
         <i class="mdi mdi-pill menu-icon"></i>
         <span class="menu-title">Data Obat</span>
       </a>
@@ -128,8 +128,8 @@ if(isset($_SESSION['level'])){
               <div class="col-md-12 grid-margin">
                 <div class="row">
                   <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                    <h3 class="font-weight-bold">Data Dokter </h3>
-                    <h6 class="font-weight-normal mb-0">Anda dapat mengelola Dokter </h6>
+                    <h3 class="font-weight-bold">Data poli </h3>
+                    <h6 class="font-weight-normal mb-0">Anda dapat mengelola poli <span class="text-primary">3 unread alerts!</span></h6>
                   </div>
                   <div class="col-12 col-xl-4">
                     <div class="justify-content-end d-flex">
@@ -152,36 +152,32 @@ if(isset($_SESSION['level'])){
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
+                    </p>
                     <div class="table-responsive">
                     <a type="button" href="add.php" class="btn btn-primary">Tambah Data</a>
                       <table class="table table-striped">
                         <thead>
                           <tr>
                           <th> No. </th>
-                            <th> Nama Dokter </th>
-                            <th> alamat </th>
-                            <th> No Hp </th>
-                            <th> Keterangan </th>
+                            <th> Nama </th>
+                            <th> Ket </th>
                           </tr>
                         </thead>
                         <tbody>
             <?php
-            // Query untuk mengambil data dari tabel 
+            // Query untuk mengambil data dari tabel pasien
             $no=1;
-            $sql_dokter = mysqli_query($con,"SELECT * FROM dokter") or die(mysqli_error($con));
-            if (mysqli_num_rows($sql_dokter) > 0) {
+            $sql_poli = mysqli_query($con,"SELECT * FROM poli") or die(mysqli_error($con));
+            if (mysqli_num_rows($sql_poli) > 0) {
                 // Output data setiap baris
-                while ($data=mysqli_fetch_array($sql_dokter)) {?>
+                while ($data=mysqli_fetch_array($sql_poli)) {?>
                    <tr>
             <td><?php echo $no++; ?></td>
             <td><?php echo htmlspecialchars($data['nama']); ?></td>
-            <td><?php echo htmlspecialchars($data['alamat']); ?></td>
-            <td><?php echo htmlspecialchars($data['no_hp']); ?></td>
             <td>
-                                      <a href="edit.php?id=<?=$data['id']?>"><button type="button" class="btn btn-warning btn-rounded btn-icon"><i class="mdi mdi-tooltip-edit"></i></button></a>
-                                      <a href="delete.php?id=<?=$data['id']?>"><button type="button" class="btn btn-danger btn-rounded btn-icon"><i class="mdi mdi-delete-forever"></i></button></a>
+              <a href="edit.php?id=<?=$data['id']?>"><button type="button" class="btn btn-warning btn-rounded btn-icon"><i class="mdi mdi-tooltip-edit"></i></button></a>
+              <a href="delete.php?id=<?=$data['id']?>"><button type="button" class="btn btn-danger btn-rounded btn-icon"><i class="mdi mdi-delete-forever"></i></button></a>
                                     </td>
-            
             </tr>
                   <?php
                 }

@@ -88,129 +88,35 @@ if(isset($_SESSION['level'])){
       <div class="container-fluid page-body-wrapper">
         <!-- partial:partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
-  <ul class="nav">
+        <ul class="nav">
     <li class="nav-item">
-      <a class="nav-link" href="../index.php">
+      <a class="nav-link" href="../../admin/index.php">
         <i class="icon-grid menu-icon"></i>
         <span class="menu-title">Dashboard</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="../DataDokter/index.php">
+      <a class="nav-link" href="../../admin/DataDokter/index.php">
         <i class="mdi mdi-stethoscope menu-icon"></i>
         <span class="menu-title">Data Dokter</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="../DataPasien/index.php">
+      <a class="nav-link" href="../../admin/DataPasien/index.php">
         <i class="mdi mdi-account-multiple menu-icon"></i>
         <span class="menu-title">Data Pasien</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="../DataPoli/index.php">
+      <a class="nav-link" href="../../admin/DataPoli/index.php">
         <i class="mdi mdi-hospital-building menu-icon"></i>
         <span class="menu-title">Data Poli</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="../DataObat/index.php">
+      <a class="nav-link" href="../../admin/DataObat/index.php">
         <i class="mdi mdi-pill menu-icon"></i>
         <span class="menu-title">Data Obat</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-        <i class="icon-layout menu-icon"></i>
-        <span class="menu-title">UI Elements</span>
-        <i class="menu-arrow"></i>
-      </a>
-      <div class="collapse" id="ui-basic">
-        <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="../../../pages/ui-features/buttons.html">Buttons</a></li>
-          <li class="nav-item"> <a class="nav-link" href="../../../pages/ui-features/dropdowns.html">Dropdowns</a></li>
-          <li class="nav-item"> <a class="nav-link" href="../../../pages/ui-features/typography.html">Typography</a></li>
-        </ul>
-      </div>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
-        <i class="icon-columns menu-icon"></i>
-        <span class="menu-title">Form elements</span>
-        <i class="menu-arrow"></i>
-      </a>
-      <div class="collapse" id="form-elements">
-        <ul class="nav flex-column sub-menu">
-          <li class="nav-item"><a class="nav-link" href="../../../pages/forms/basic_elements.html">Basic Elements</a></li>
-        </ul>
-      </div>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
-        <i class="icon-bar-graph menu-icon"></i>
-        <span class="menu-title">Charts</span>
-        <i class="menu-arrow"></i>
-      </a>
-      <div class="collapse" id="charts">
-        <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="../../../pages/charts/chartjs.html">ChartJs</a></li>
-        </ul>
-      </div>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
-        <i class="icon-grid-2 menu-icon"></i>
-        <span class="menu-title">Tables</span>
-        <i class="menu-arrow"></i>
-      </a>
-      <div class="collapse" id="tables">
-        <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="../../../pages/tables/basic-table.html">Basic table</a></li>
-        </ul>
-      </div>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
-        <i class="icon-contract menu-icon"></i>
-        <span class="menu-title">Icons</span>
-        <i class="menu-arrow"></i>
-      </a>
-      <div class="collapse" id="icons">
-        <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="../../../pages/icons/mdi.html">Mdi icons</a></li>
-        </ul>
-      </div>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-        <i class="icon-head menu-icon"></i>
-        <span class="menu-title">User Pages</span>
-        <i class="menu-arrow"></i>
-      </a>
-      <div class="collapse" id="auth">
-        <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="../../../pages/samples/login.html"> Login </a></li>
-          <li class="nav-item"> <a class="nav-link" href="../../../pages/samples/register.html"> Register </a></li>
-        </ul>
-      </div>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="collapse" href="#error" aria-expanded="false" aria-controls="error">
-        <i class="icon-ban menu-icon"></i>
-        <span class="menu-title">Error pages</span>
-        <i class="menu-arrow"></i>
-      </a>
-      <div class="collapse" id="error">
-        <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="../../../pages/samples/error-404.html"> 404 </a></li>
-          <li class="nav-item"> <a class="nav-link" href="../../../pages/samples/error-500.html"> 500 </a></li>
-        </ul>
-      </div>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="../../../../docs/documentation.html">
-        <i class="icon-paper menu-icon"></i>
-        <span class="menu-title">Documentation</span>
       </a>
     </li>
   </ul>
@@ -222,8 +128,8 @@ if(isset($_SESSION['level'])){
               <div class="col-md-12 grid-margin">
                 <div class="row">
                   <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                    <h3 class="font-weight-bold">Data Obat </h3>
-                    <h6 class="font-weight-normal mb-0">Anda dapat mengelola obat <span class="text-primary">3 unread alerts!</span></h6>
+                    <h3 class="font-weight-bold">Data Pasien </h3>
+                    <h6 class="font-weight-normal mb-0">Anda dapat mengelola Pasien <span class="text-primary">3 unread alerts!</span></h6>
                   </div>
                   <div class="col-12 col-xl-4">
                     <div class="justify-content-end d-flex">
@@ -248,6 +154,7 @@ if(isset($_SESSION['level'])){
                   <div class="card-body">
                     </p>
                     <div class="table-responsive">
+                    <a type="button" href="add.php" class="btn btn-primary">Tambah Data</a>
                       <table class="table table-striped">
                         <thead>
                           <tr>
@@ -271,9 +178,12 @@ if(isset($_SESSION['level'])){
             <td><?php echo $no++; ?></td>
             <td><?php echo htmlspecialchars($data['nama']); ?></td>
             <td><?php echo htmlspecialchars($data['alamat']); ?></td>
-            <td><?php echo htmlspecialchars($data['no_ktp']); ?></td>
-            <td><?php echo htmlspecialchars($data['no_hp']); ?></td>
-            <td></td>
+            <td><?php echo htmlspecialchars($data['noKTP']); ?></td>
+            <td><?php echo htmlspecialchars($data['noHP']); ?></td>
+            <td>
+              <a href="edit.php?id=<?=$data['id']?>"><button type="button" class="btn btn-warning btn-rounded btn-icon"><i class="mdi mdi-tooltip-edit"></i></button></a>
+              <a href="delete.php?id=<?=$data['id']?>"><button type="button" class="btn btn-danger btn-rounded btn-icon"><i class="mdi mdi-delete-forever"></i></button></a>
+                                    </td>
             </tr>
                   <?php
                 }

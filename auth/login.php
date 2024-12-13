@@ -1,8 +1,25 @@
 <?php
 require_once "../_config/db_konek.php";
 
-if(isset($_SESSION['user'])){
-  echo "<script>window.location='".base_url()."';</script>";
+if(isset($_SESSION['level'])){
+  if ($_SESSION['level'] == '1') {
+    // Redirect jika  level 1
+    echo "<script>alert('anda sudah login');</script>";
+    echo "<script>window.location='".base_url('user/admin/index.php')."';</script>";
+    exit;
+  }
+  else if ($_SESSION['level'] == '2') {
+    // Redirect jika  level 2
+    echo "<script>alert('anda sudah login');</script>";
+    echo "<script>window.location='".base_url('user/dokter/index.php')."';</script>";
+    exit;
+  }
+  else if ($_SESSION['level'] == '3') {
+    // Redirect jika  level 3
+    echo "<script>alert('anda sudah login');</script>";
+    echo "<script>window.location='".base_url('user/pasien/index.php')."';</script>";
+    exit;
+  }
 }else{
   
 }
@@ -62,7 +79,7 @@ if(isset($_SESSION['user'])){
                               echo "<script>window.location='" . base_url('user/admin/index.php') . "';</script>";
                               break;
                           case '2':
-                              echo "<script>window.location='" . base_url('user/admin/index.php') . "';</script>";
+                              echo "<script>window.location='" . base_url('user/dokter/index.php') . "';</script>";
                               break;
                           case '3':
                               echo "<script>window.location='" . base_url('user/pasien/index.php') . "';</script>";
@@ -89,7 +106,7 @@ if(isset($_SESSION['user'])){
                   <div class="mt-3 d-grid gap-2">
                     <input type="submit" name="login" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">
                   </div>
-                   <div class="text-center mt-4 font-weight-light"> Didnt have an account? <a href="login.html" class="text-primary">Register here!</a>
+                   <div class="text-center mt-4 font-weight-light"> Didnt have an account? <a href="register.php" class="text-primary">Register here!</a>
                   </div>
                 </form>
               </div>

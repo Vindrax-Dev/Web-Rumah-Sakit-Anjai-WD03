@@ -1,8 +1,8 @@
 <?php
 require_once "../../_config/db_konek.php";
 if(isset($_SESSION['level'])){
-  if ($_SESSION['level'] !== '3') {
-    // Redirect jika bukan level 3
+  if ($_SESSION['level'] !== '2') {
+    // Redirect jika bukan level 2
     echo "<script>alert('Akses ditolak! Halaman ini hanya untuk Dokter.');</script>";
     echo "<script>window.location='".base_url('../auth/login.php')."';</script>";
     exit;
@@ -104,8 +104,8 @@ if(isset($_SESSION['level'])){
               <div class="col-md-12 grid-margin">
                 <div class="row">
                   <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                  <h3 class="font-weight-bold">Selamat Datang Pasien!!! </h3>
-                  <h6 class="font-weight-normal mb-0">Rumah Sakit Anjai <span class="text-primary">Kerjakan Tugas Anda Sebagai Pasien</span></h6>
+                  <h3 class="font-weight-bold">Selamat Datang Dokter!!! </h3>
+                  <h6 class="font-weight-normal mb-0">Rumah Sakit Anjai <span class="text-primary">Kerjakan Tugas Anda Sebagai Dokter</span></h6>
                   </div>
                 </div>
               </div>
