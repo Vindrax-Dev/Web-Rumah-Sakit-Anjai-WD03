@@ -3,13 +3,13 @@
 
     if(isset($_POST['add'])){
       $nama= trim(mysqli_real_escape_string($con,$_POST['nama']));
-      $kemasan= trim(mysqli_real_escape_string($con,$_POST['kemasan']));
-      $id_obat= intval($_POST['id_obat']);
-      $harga= intval($_POST['harga']);
-      mysqli_query($con,"INSERT INTO obat (id, nama_obat, kemasan, harga) VALUES ('$id_obat', '$nama', '$kemasan', '$harga')");
+      $id_poli= $_POST['id'];
+      mysqli_query($con,"INSERT INTO poli (id, nama) VALUES ('$id_obat', '$nama')");
         echo"<script>window.location='index.php';</script>";
-    }else{
-      echo "<script>window.location='".base_url('../../../auth/login.php')."';</script>";
-      
+    }else if(isset($_POST['edit'])){
+      $nama= trim(mysqli_real_escape_string($con,$_POST['nama']));
+      $id_poli= $_POST['id'];
+      mysqli_query($con,"UPDATE poli SET nama='$nama' WHERE id = '$id_poli'");
+       echo"<script>window.location='index.php';</script>";
     }
 ?>
