@@ -1,8 +1,8 @@
 <?php
 require_once "../../_config/db_konek.php";
 if(isset($_SESSION['level'])){
-  if ($_SESSION['level'] !== '2') {
-    // Redirect jika bukan level 2
+  if ($_SESSION['level'] !== '3') {
+    // Redirect jika bukan level 3
     echo "<script>alert('Akses ditolak! Halaman ini hanya untuk Dokter.');</script>";
     echo "<script>window.location='".base_url('../auth/login.php')."';</script>";
     exit;
@@ -89,52 +89,87 @@ if(isset($_SESSION['level'])){
         <!-- partial:partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
   <ul class="nav">
-    <li class="nav-item">
-      <a class="nav-link" href="../dokter/index.php">
+  <li class="nav-item">
+      <a class="nav-link" href="index.php">
         <i class="icon-grid menu-icon"></i>
         <span class="menu-title">Dashboard</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="../dokter/EditData/index.php">
+      <a class="nav-link" href="daftarpoli.php">
         <i class="icon-grid menu-icon"></i>
-        <span class="menu-title">Edit Data</span>
+        <span class="menu-title">Daftar Periksa</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="../dokter/JadwalPeriksa/index.php">
+      <a class="nav-link" href="riwayatperiksa.php">
         <i class="icon-grid menu-icon"></i>
-        <span class="menu-title">Jadwal Periksa</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="../dokter/CatatPasien/index.php">
-        <i class="icon-grid menu-icon"></i>
-        <span class="menu-title">Periksa Pasien</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="../dokter/RiwyatPasien/index.php">
-        <i class="icon-grid menu-icon"></i>
-        <span class="menu-title">Riwayat Pasien</span>
+        <span class="menu-title">Riwayat Periksa</span>
       </a>
     </li>
   </ul>
 </nav>
-        <!-- partial -->
-        <div class="main-panel">
+<div class="main-panel">
           <div class="content-wrapper">
             <div class="row">
               <div class="col-md-12 grid-margin">
                 <div class="row">
                   <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                  <h3 class="font-weight-bold">Selamat Datang Dokter!!! </h3>
-                  <h6 class="font-weight-normal mb-0">Rumah Sakit Anjai <span class="text-primary">Kerjakan Tugas Anda Sebagai Dokter</span></h6>
+                    <h3 class="font-weight-bold">Input Jadwal Periksa </h3>
                   </div>
                 </div>
               </div>
             </div>
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Edit Data Dokter</h4>
+                <?php
+                $sql_Dokter = mysqli_query($con, "SELECT * FROM pasien WHERE id_user = '$_SESSION[id_user]'") or die(mysqli_error($con));
+                $data = mysqli_fetch_array($sql_Dokter);
+                ?>
+                <form action="proses.php" method="post" class="forms-sample">
+                    <h5 name="id">Nomor Rekam Medis <?= $data['norm'] ?></h5>
+                    
+                    <!-- Dropdown Poli -->
+                    <div class="form-group">
+                        <label for="poli">Pilih Poli</label>
+                        <select name="poli" class="form-control" id="poli">
+                            <option value="">-- Pilih Poli --</option>
+                            <?php
+                            $sql_Poli = mysqli_query($con, "SELECT * FROM poli") or die(mysqli_error($con));
+                            while ($poli = mysqli_fetch_array($sql_Poli)) {
+                                echo "<option value='{$poli['id']}'>{$poli['nama']}</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    
+                    <!-- Dropdown Jadwal -->
+                    <div class="form-group">
+                        <label for="jadwal">Pilih Jadwal</label>
+                        <select name="jadwal" class="form-control" id="jadwal">
+                            <option value="">-- Pilih Jadwal --</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="keluhan">Keluhan</label>
+                        <input type="textbox" name="keluhan" class="form-control" id="keluhan" value="">
+                    </div>
+                    
+                    <button type="submit" name="edit" class="btn btn-primary me-2">Submit</button>
+                    <a class="btn btn-sm btn-light" href="index.php">Hapus Isian</a>
+                    <a class="btn btn-sm btn-light" href="../index.php">Cancel</a>
+                </form>
+            </div>
 
+
+        </div>
+    </div>
+
+
+        <!-- main-panel ends -->
           <!-- content-wrapper ends -->
           <!-- partial:partials/_footer.html -->
           <footer class="footer">
@@ -171,5 +206,30 @@ if(isset($_SESSION['level'])){
     <script src="../../assets/js/dashboard.js"></script>
     <!-- <script src="assets/js/Chart.roundedBarCharts.js"></script> -->
     <!-- End custom js for this page-->
+    <script>
+document.getElementById('poli').addEventListener('change', function () {
+    const poliId = this.value;
+    const jadwalDropdown = document.getElementById('jadwal');
+    jadwalDropdown.innerHTML = '<option value="">-- Pilih Jadwal --</option>'; // Reset dropdown
+
+    if (poliId) {
+        // Kirim permintaan AJAX ke server untuk mendapatkan data jadwal
+        fetch(`proses.php?poli_id=${poliId}`)
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(jadwal => {
+                    const option = document.createElement('option');
+                    option.value = jadwal.id;
+                    option.textContent = `${jadwal.hari} (${jadwal.jam_mulai} - ${jadwal.jam_selesai})`;
+                    jadwalDropdown.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    }
+});
+</script>
+
+
   </body>
 </html>
+

@@ -72,7 +72,7 @@ if(isset($_SESSION['level'])){
                       
                       $_SESSION['user'] = $data['username'];  // Simpan username di session
                       $_SESSION['level'] = $data['level'];    // Simpan level di session
-                      $_SESSION['id_user'] = $data['id_user'];
+                      $_SESSION['id_user'] = $data['id_user'];//Simpan Id di session
                       // Redirect berdasarkan level
                       switch ($data['level']) {
                           case '1':

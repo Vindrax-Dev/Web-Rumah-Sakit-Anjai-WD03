@@ -1,14 +1,14 @@
 <?php
 require_once "../../_config/db_konek.php";
 if(isset($_SESSION['level'])){
-  if ($_SESSION['level'] !== '2') {
+  if ($_SESSION['level'] !== '3') {
     // Redirect jika bukan level 2
-    echo "<script>alert('Akses ditolak! Halaman ini hanya untuk Dokter.');</script>";
-    echo "<script>window.location='".base_url('../auth/login.php')."';</script>";
+    echo "<script>alert('Akses ditolak! Halaman ini hanya untuk Pasien.');</script>";
+    echo "<script>window.location='".base_url('../../auth/login.php')."';</script>";
     exit;
 }
 }else{
-  echo "<script>window.location='".base_url('../auth/login.php')."';</script>";
+  echo "<script>window.location='".base_url('../../auth/login.php')."';</script>";
   
 }
 ?>
@@ -59,8 +59,8 @@ if(isset($_SESSION['level'])){
       <!-- partial:partials/_navbar.html -->
       <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
   <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-    <a class="navbar-brand brand-logo me-5" href="index.html"><img src="../../assets/images/logo.svg" class="me-2" alt="logo" /></a>
-    <a class="navbar-brand brand-logo-mini" href="index.html"><img src="../../assets/images/logo-mini.svg" alt="logo" /></a>
+    <a class="navbar-brand brand-logo me-5" href="index.html"><img src="../assets/images/logo.svg" class="me-2" alt="logo" /></a>
+    <a class="navbar-brand brand-logo-mini" href="index.html"><img src="../assets/images/logo-mini.svg" alt="logo" /></a>
   </div>
   <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
     <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -71,7 +71,7 @@ if(isset($_SESSION['level'])){
       </li>
       <li class="nav-item nav-profile dropdown">
         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
-          <img src="../../assets/images/faces/face28.jpg" alt="profile" />
+          <img src="../assets/images/faces/face28.jpg" alt="profile" />
         </a>
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
           <a class="dropdown-item" href="../../auth/logout.php">
@@ -90,50 +90,115 @@ if(isset($_SESSION['level'])){
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
   <ul class="nav">
     <li class="nav-item">
-      <a class="nav-link" href="../dokter/index.php">
+      <a class="nav-link" href="index.php">
         <i class="icon-grid menu-icon"></i>
         <span class="menu-title">Dashboard</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="../dokter/EditData/index.php">
+      <a class="nav-link" href="daftarpoli.php">
         <i class="icon-grid menu-icon"></i>
-        <span class="menu-title">Edit Data</span>
+        <span class="menu-title">Daftar Periksa</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="../dokter/JadwalPeriksa/index.php">
+      <a class="nav-link" href="riwayatperiksa.php">
         <i class="icon-grid menu-icon"></i>
-        <span class="menu-title">Jadwal Periksa</span>
+        <span class="menu-title">Riwayat Periksa</span>
       </a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="../dokter/CatatPasien/index.php">
-        <i class="icon-grid menu-icon"></i>
-        <span class="menu-title">Periksa Pasien</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="../dokter/RiwyatPasien/index.php">
-        <i class="icon-grid menu-icon"></i>
-        <span class="menu-title">Riwayat Pasien</span>
-      </a>
-    </li>
-  </ul>
 </nav>
-        <!-- partial -->
-        <div class="main-panel">
+ <!-- partial -->
+ <div class="main-panel">
           <div class="content-wrapper">
             <div class="row">
               <div class="col-md-12 grid-margin">
                 <div class="row">
                   <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                  <h3 class="font-weight-bold">Selamat Datang Dokter!!! </h3>
-                  <h6 class="font-weight-normal mb-0">Rumah Sakit Anjai <span class="text-primary">Kerjakan Tugas Anda Sebagai Dokter</span></h6>
+                    <h3 class="font-weight-bold">Riwayat Pasien </h3>
+                    <h6 class="font-weight-normal mb-0">Berikut Riwayat Periksa Anda</h6>
                   </div>
                 </div>
               </div>
             </div>
+            <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    </p>
+                    <div class="table-responsive">
+                    <a type="button" href="daftarpoli.php" class="btn btn-primary">Daftar Periksa</a>
+                      <table class="table table-striped">
+                        <thead>
+                          <tr>
+                          <th> No. </th>
+                            <th> Poli </th>
+                            <th> Dokter </th>
+                            <th> Hari </th>
+                            <th> Mulai </th>
+                            <th> Selesai </th>
+                            <th> Antrian </th>
+                            <th> Status </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+            <?php
+            
+            $query = "
+    SELECT 
+        dp.id AS no,
+        p.nama AS poli,
+        d.nama AS dokter,
+        jp.hari,
+        jp.jam_mulai AS mulai,
+        jp.jam_selesai AS selesai,
+        dp.no_antrian AS antrian,
+        CASE 
+            WHEN dp.no_antrian = 0 THEN 'Selesai' 
+            WHEN dp.no_antrian != 0 THEN 'Menunggu' 
+            ELSE 'Tidak Diketahui' 
+        END AS status
+    FROM 
+        daftar_poli dp
+    JOIN 
+        jadwal_periksa jp ON dp.id_jadwal = jp.id
+    JOIN 
+        dokter d ON jp.id_dokter = d.id
+    JOIN 
+        poli p ON d.id_poli = p.id
+";
+
+$result = mysqli_query($con, $query);
+
+// Periksa apakah query berhasil
+if (!$result) {
+    die("Query gagal: " . mysqli_error($con));
+}
+
+// Loop untuk menampilkan data dalam tabel
+$no = 1;
+while ($row = mysqli_fetch_assoc($result)) {
+    echo "
+        <tr>
+            <td>{$no}</td>
+            <td>{$row['poli']}</td>
+            <td>{$row['dokter']}</td>
+            <td>{$row['hari']}</td>
+            <td>{$row['mulai']}</td>
+            <td>{$row['selesai']}</td>
+            <td>{$row['antrian']}</td>
+            <td>{$row['status']}</td>
+        </tr>
+    ";
+    $no++;
+}
+            ?>
+        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
           <!-- content-wrapper ends -->
           <!-- partial:partials/_footer.html -->

@@ -89,10 +89,22 @@ if(isset($_SESSION['level'])){
         <!-- partial:partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
   <ul class="nav">
-    <li class="nav-item">
-      <a class="nav-link" href="../admin/index.php">
+  <li class="nav-item">
+      <a class="nav-link" href="index.php">
         <i class="icon-grid menu-icon"></i>
         <span class="menu-title">Dashboard</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="daftarpoli.php">
+        <i class="icon-grid menu-icon"></i>
+        <span class="menu-title">Daftar Periksa</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="riwayatperiksa.php">
+        <i class="icon-grid menu-icon"></i>
+        <span class="menu-title">Riwayat Periksa</span>
       </a>
     </li>
   </ul>
@@ -105,7 +117,7 @@ if(isset($_SESSION['level'])){
                 <div class="row">
                   <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                   <h3 class="font-weight-bold">Selamat Datang Pasien!!! </h3>
-                  <h6 class="font-weight-normal mb-0">Rumah Sakit Anjai <span class="text-primary">Kerjakan Tugas Anda Sebagai Pasien</span></h6>
+                  <h6 class="font-weight-normal mb-0">Rumah Sakit Anjai <span class="text-primary">---</span></h6>
                   </div>
                 </div>
               </div>

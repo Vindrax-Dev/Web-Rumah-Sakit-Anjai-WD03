@@ -1,14 +1,14 @@
 <?php
 require_once "../../../_config/db_konek.php";
 if(isset($_SESSION['level'])){
-  if ($_SESSION['level'] !== '1') {
-    // Redirect jika bukan level 1
-    echo "<script>alert('Akses ditolak! Halaman ini hanya untuk level 1.');</script>";
-    echo "<script>window.location='".base_url('../../../auth/login.php')."';</script>";
+  if ($_SESSION['level'] !== '2') {
+    // Redirect jika bukan level 2
+    echo "<script>alert('Akses ditolak! Halaman ini hanya untuk Dokter.');</script>";
+    echo "<script>window.location='".base_url('../../auth/login.php')."';</script>";
     exit;
 }
 }else{
-  echo "<script>window.location='".base_url('../../../auth/login.php')."';</script>";
+  echo "<script>window.location='".base_url('../../auth/login.php')."';</script>";
   
 }
 ?>
@@ -59,8 +59,8 @@ if(isset($_SESSION['level'])){
       <!-- partial:partials/_navbar.html -->
       <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
   <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-    <a class="navbar-brand brand-logo me-5" href="index.html"><img src="../../../assets/images/logo.svg" class="me-2" alt="logo" /></a>
-    <a class="navbar-brand brand-logo-mini" href="index.html"><img src="../../../assets/images/logo-mini.svg" alt="logo" /></a>
+    <a class="navbar-brand brand-logo me-5" href="index.html"><img src="../../assets/images/logo.svg" class="me-2" alt="logo" /></a>
+    <a class="navbar-brand brand-logo-mini" href="index.html"><img src="../../assets/images/logo-mini.svg" alt="logo" /></a>
   </div>
   <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
     <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -88,93 +88,97 @@ if(isset($_SESSION['level'])){
       <div class="container-fluid page-body-wrapper">
         <!-- partial:partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
-        <ul class="nav">
+  <ul class="nav">
     <li class="nav-item">
-      <a class="nav-link" href="../../admin/index.php">
+      <a class="nav-link" href="../index.php">
         <i class="icon-grid menu-icon"></i>
         <span class="menu-title">Dashboard</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="../../admin/DataDokter/index.php">
-        <i class="mdi mdi-stethoscope menu-icon"></i>
-        <span class="menu-title">Data Dokter</span>
+      <a class="nav-link" href="../EditData/index.php">
+        <i class="icon-grid menu-icon"></i>
+        <span class="menu-title">Edit Data</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="../../admin/DataPasien/index.php">
-        <i class="mdi mdi-account-multiple menu-icon"></i>
-        <span class="menu-title">Data Pasien</span>
+      <a class="nav-link" href="../JadwalPeriksa/index.php">
+        <i class="icon-grid menu-icon"></i>
+        <span class="menu-title">Jadwal Periksa</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="../../admin/DataPoli/index.php">
-        <i class="mdi mdi-hospital-building menu-icon"></i>
-        <span class="menu-title">Data Poli</span>
+      <a class="nav-link" href="../CatatPasien/index.php">
+        <i class="icon-grid menu-icon"></i>
+        <span class="menu-title">Periksa Pasien</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="../admin/DataObat/index.php">
-        <i class="mdi mdi-pill menu-icon"></i>
-        <span class="menu-title">Data Obat</span>
+      <a class="nav-link" href="../RiwayatPasien/index.php">
+        <i class="icon-grid menu-icon"></i>
+        <span class="menu-title">Riwayat Pasien</span>
       </a>
     </li>
   </ul>
 </nav>
-        <!-- partial -->
-        <div class="main-panel">
+<div class="main-panel">
           <div class="content-wrapper">
-            <div class="row">
-              <div class="col-md-12 grid-margin">
-                <div class="row">
-                  <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                    <h3 class="font-weight-bold">Data Obat </h3>
-                    <h6 class="font-weight-normal mb-0">Anda dapat mengelola obat </h6>
-                  </div>
-                  <div class="col-12 col-xl-4">
-                    <div class="justify-content-end d-flex">
-                      <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
-                        <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                          <i class="mdi mdi-calendar"></i> Today (10 Jan 2021) </button>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
-                          <a class="dropdown-item" href="#">January - March</a>
-                          <a class="dropdown-item" href="#">March - June</a>
-                          <a class="dropdown-item" href="#">June - August</a>
-                          <a class="dropdown-item" href="#">August - November</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
+<div class="row">
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Tambah Data Obat</h4>
-                    <form action="proses.php" method="post" class="forms-sample">
-                      
+                    <h4 class="card-title">Periksa Pasien</h4>
+                    <?php
+                        // Mengambil data dari URL
+                        $id_daftar_poli = $_GET['idp']; 
+                        $nama_pasien = $_GET['nama_pasien']; 
+                    ?>
+                    <form action="proses.php?" method="post" class="forms-sample">
+                    <div class="form-group">
+                        <input type="hidden" name="idp" class="form-control" id="idp" value="<?=$id_daftar_poli?>" >
+                    </div>
                       <div class="form-group">
-                        <label for="nama">Nama Obat</label>
-                        <input type="text" name="nama"class="form-control" id="nama" placeholder="Contoh : Paratusin">
+                        <label for="nama">Nama Pasien</label>
+                        <input type="text" name="nama"class="form-control" id="nama" value="<?=$nama_pasien?>" disabled>
                       </div>
                       <div class="form-group">
-                        <label for="kemasan">Kemasan</label>
-                        <input type="text" name= "kemasan" class="form-control" id="kemasan" placeholder="Contoh : Besar">
-                      </div>
-                      <div class="form-group">
-                        <label for="harga">Harga</label>
-                        <input type="text"name="harga" class="form-control" id="harga" placeholder="Contoh : 50000">
-                      </div>
-                      <button type="submit" name="add" class="btn btn-primary me-2">Submit</button>
-                      <a type ="cancel"class="btn btn-sm btn-light" href="index.php">Cancel</a>
+                        <label for="tgl_periksa">Tanggal Periksa</label>
+                        <input type="date" name="tgl_periksa" class="form-control" id="tgl_periksa" >
+                        </div>
+                        <div class="form-group">
+                            <label for="catatan">Catatan</label>
+                            <input type="text" name="catatan" class="form-control" id="catatan" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="tags-input" class="form-label">Obat</label>
+                            <?php
+                            // Query untuk mengambil data obat dari tabel obat
+                            $query_obat = "SELECT * FROM obat";
+                            $result_obat = mysqli_query($con, $query_obat);
+
+                            while ($obat = mysqli_fetch_assoc($result_obat)) {
+                                echo '<div class="form-group">
+                                        <input class="form-check-input obat-checkbox" type="checkbox" value="'.$obat['id'].'" data-harga="'.$obat['harga'].'" id="obat-'.$obat['id'].'" name="obat[]">
+                                        <label class="form-check-label" for="obat-'.$obat['id'].'">
+                                            '.$obat['nama'].' - Rp'.number_format($obat['harga'], 0, ',', '.').'
+                                        </label>
+                                    </div>';
+                            }
+                            ?>
+                            </div>
+                            <div class="form-group">
+                                <label>Total Biaya: </label>
+                                <span id="totalBiaya">Rp150,000</span>
+                            </div>
+                            <button type="submit" name="edit" class="btn btn-primary me-2">Submit</button>
+                            <a type="cancel" class="btn btn-sm btn-light" href="index.php">Hapus Isian</a>
+                            <a type="cancel" class="btn btn-sm btn-light" href="../index.php">Cancel</a>
                     </form>
                     
                   </div>
                 </div>
               </div>
-            </div>
+
           <!-- content-wrapper ends -->
           <!-- partial:partials/_footer.html -->
           <footer class="footer">
@@ -211,5 +215,27 @@ if(isset($_SESSION['level'])){
     <script src="../../../assets/js/dashboard.js"></script>
     <!-- <script src="assets/js/Chart.roundedBarCharts.js"></script> -->
     <!-- End custom js for this page-->
+
+    <script>
+    // Function to calculate total biaya
+    function updateTotalBiaya() {
+        var totalBiaya = 150000; // Biaya dasar
+        var selectedObats = document.querySelectorAll('.obat-checkbox:checked');
+        
+        selectedObats.forEach(function(obat) {
+            totalBiaya += parseInt(obat.getAttribute('data-harga')); // Menambahkan harga obat yang dipilih
+        });
+        
+        // Menampilkan total biaya
+        document.getElementById('totalBiaya').textContent = 'Rp' + totalBiaya.toLocaleString();
+    }
+
+    // Event listener untuk perubahan pada checkbox
+    var checkboxes = document.querySelectorAll('.obat-checkbox');
+    checkboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('change', updateTotalBiaya);
+    });
+</script>
+
   </body>
 </html>
