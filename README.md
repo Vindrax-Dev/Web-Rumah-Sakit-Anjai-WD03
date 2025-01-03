@@ -37,4 +37,4 @@ Panduan ini menjelaskan cara menginstal website yang Anda download dari GitHub b
     - Password :anjaiadmin
 3. Pasien
     - Username :pasienasli
-    - Password :aslipasien
+    - Password :pasienasli
