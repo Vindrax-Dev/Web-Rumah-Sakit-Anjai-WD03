@@ -24,17 +24,17 @@ Panduan ini menjelaskan cara menginstal website yang Anda download dari GitHub b
 1. Di phpMyAdmin, klik **New**.
 2. Masukkan nama database, contoh: `myweb_db`, (disarankan menggunakan nama yang sama dengan databse) lalu klik **Create**.
 
-### C. Import File SQL (Jika Ada)
+### C. Import File SQL 
 1. Pilih database yang telah dibuat, klik **Import**.
 2. Pilih file `rumah_sakit_anjay (1).sql` dari folder proyek, klik **Go**.
 
 ### D. Akun User Default :
-Dokter :
-    Username :dokter
-    Password :dokter
-Admin
-    Username :adminanjai
-    Password :anjaiadmin
-Pasien
-    Username :pasienasli
-    Password :aslipasien
+1. Dokter :
+    - Username :dokter
+    - Password :dokter
+2. Admin
+    - Username :adminanjai
+    - Password :anjaiadmin
+3. Pasien
+    - Username :pasienasli
+    - Password :aslipasien
